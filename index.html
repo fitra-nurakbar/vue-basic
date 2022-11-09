@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;   
+        }
+        ul {
+            background: #000;
+            color: white;
+        }
+        .bg {
+            background-color: aqua;
+            margin-bottom: 20px;
+        }
+        .event {
+            background: grey;
+            height: 200px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Hello VueJS</h1>
+
+    <div id="root">
+        <h2>{{ world }} - {{number}}</h2>
+        <!-- contentnya disini -->
+        <ul v-if="showUser" >
+            <li v-for="user in filteredUsers" :class="{ bg: user.color }">
+                <img :src="user.img" :alt="user.name">
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.message }}</p>
+            </li>
+        </ul>
+        <button v-show="showUser" v-on:click="number++">Increase number</button>
+        <button v-show="showUser" v-on:click="number--">Decrease number</button>
+        <div v-show="showUser" @click="changeName">change world</div>
+        <button style="cursor: pointer;" @click="toggleButton">
+            <span v-if="showUser">Hidden</span>
+            <span v-else>Show</span>
+        </button>
+        <br>
+        <a v-bind:href="url">follow me</a>
+        <br>
+        <div class="event" @mouseover="eventHandler($event, 'test')">Mouse Over</div>
+        <div class="event" @mouseleave="eventHandler">Mouse Leave</div>
+        <div class="event" @dblclick="eventHandler">Double Click</div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
